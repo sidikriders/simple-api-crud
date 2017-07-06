@@ -8,8 +8,9 @@
   </head>
   <body>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <div id="app">
-      <nav class="navbar ">
+      <nav class="navbar" style="border-bottom: 1px darkgrey solid">
         <div class="navbar-brand">
           <a class="navbar-item" href="#">
             SIMPLE API CRUD
@@ -39,24 +40,117 @@
           </div>
 
           <div class="navbar-end">
-            <a class="navbar-item">
+            <a class="navbar-item" @click="getAllofAll()">
               Home
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" @click="getFoodOnly()">
               Foods
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" @click="getRestaurantOnly()">
               Restaurants
             </a>
           </div>
         </div>
       </nav>
+      <div v-if="listFood.length > 0">
+        <label class="label">Food</label>
+        <ul v-for="food in listFood">
+          <li><p> {{ food.name }} </p></li>
+        </ul>
+        <a class="icon">
+          <i class="fa fa-plus-circle"></i>
+        </a>
+      </div>
+      <div v-else>
+
+      </div>
+      <div v-if="listRestaurant.length > 0">
+        <label class="label">Restaurants</label>
+        <ul v-for="rest in listRestaurant">
+          <li><p> {{ rest.name }} </p></li>
+        </ul>
+        <a class="icon">
+          <i class="fa fa-plus-circle"></i>
+        </a>
+      </div>
+      <div v-else>
+
+      </div>
+      <div :class="modalNewFood">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">New Food</p>
+            <button class="delete"></button>
+          </header>
+          <section class="modal-card-body">
+            <!-- Content ... -->
+          </section>
+          <footer class="modal-card-foot">
+            <a class="button is-success">Save</a>
+            <a class="button">Cancel</a>
+          </footer>
+        </div>
+      </div>
     </div>
     <script>
     var app = new Vue({
       el: '#app',
       data: {
-        message: 'Hello Vue!'
+        message: 'Hello Vue!',
+        listFood: [],
+        listRestaurant: [],
+        modalNewFood: "modal"
+      },
+      methods: {
+        getAllofAll: function() {
+          let self = this
+          axios.get('http://localhost:3000/foods')
+          .then(function(response) {
+            self.listFood = response.data
+            axios.get('http://localhost:3000/restaurants')
+            .then(function(rezponse) {
+              self.listRestaurant = rezponse.data
+            })
+            .catch(function(err) {
+              console.log(err);
+            })
+          })
+          .catch(function(err) {
+            console.log(err);
+          })
+        },
+        getFoodOnly: function() {
+          let self = this
+          axios.get('http://localhost:3000/foods')
+          .then(function(response) {
+            self.listFood = response.data
+            self.listRestaurant = []
+          })
+          .catch(function(err) {
+            console.log(err);
+          })
+        },
+        getRestaurantOnly: function() {
+          let self = this
+          axios.get('http://localhost:3000/restaurants')
+          .then(function(response) {
+            self.listFood = []
+            self.listRestaurant = response.data
+          })
+          .catch(function(err) {
+            console.log(err);
+          })
+        },
+        showModalNewFood: function() {
+          this.modalNewFood = "modal is-active"
+        },
+        closeModalNewFood: function() {
+          this.modalNewFood = "modal"
+        }
+      },
+      created: function() {
+        this.getAllofAll()
       }
     })
     </script>
