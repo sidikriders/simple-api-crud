@@ -20,20 +20,19 @@ $ npm install
 $ npm start
 ```
 
-#CRUD Endpoint
+### CRUD Endpoint
 
 Here's the url list to acces this simple API
 
 | METHOD | URL | Description |
 | ----- | ----- | ----- |
-| GET | [http://localhost:3000/foods] | to get all foods data |
-| GET | [http://localhost:3000/foods/:id] | to get one 'food's' data |
-| POST | [http://localhost:3000/foods] | to create one new 'food's' data |
-| PUT | [http://localhost:3000/foods/:id] | to update one 'food's' data |
-| DELETE | [http://localhost:3000/foods/:id] | to delete one 'food's' data |
-| METHOD | URL | Description |
-| GET | [http://localhost:3000/restaurants] | to get all restaurants data |
-| GET | [http://localhost:3000/restaurants/:id] | to get one restaurant's data |
-| POST | [http://localhost:3000/restaurants] | to create one new restaurant's data |
-| PUT | [http://localhost:3000/restaurants/:id] | to update one restaurant's data |
-| DELETE | [http://localhost:3000/restaurants/:id] | to delete one restaurant's data |
+| GET | [/foods] | to get all foods data |
+| GET | [/foods/:id] | to get one 'food's' data |
+| POST | [/foods] | to create one new 'food's' data |
+| PUT | [/foods/:id] | to update one 'food's' data |
+| DELETE | [/foods/:id] | to delete one 'food's' data |
+| GET | [/restaurants] | to get all restaurants data |
+| GET | [/restaurants/:id] | to get one restaurant's data |
+| POST | [/restaurants] | to create one new restaurant's data |
+| PUT | [/restaurants/:id] | to update one restaurant's data |
+| DELETE | [/restaurants/:id] | to delete one restaurant's data |
