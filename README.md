@@ -25,6 +25,7 @@ $ npm start
 Here's the url list to acces this simple API
 
 | METHOD | URL | Description |
+| ----- | ----- | ----- |
 | GET | [http://localhost:3000/foods] | to get all foods data |
 | GET | [http://localhost:3000/foods/:id] | to get one 'food's' data |
 | POST | [http://localhost:3000/foods] | to create one new 'food's' data |
